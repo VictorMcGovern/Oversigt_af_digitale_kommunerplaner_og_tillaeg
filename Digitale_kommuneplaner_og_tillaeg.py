@@ -12,8 +12,17 @@ from datetime import datetime
 # Hent kommuneliste
 # --------------------------------------------------
 
+headers = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/138.0 Safari/537.36"
+    )
+}
+
 response = requests.get(
     "https://kommuneplaner.plandata.dk/assets/kommuner.json",
+    headers=headers,
     timeout=60
 )
 
@@ -57,6 +66,7 @@ for kommune in kommuner:
 
         kp_data = requests.get(
             kp_url,
+            headers=headers,
             timeout=30
         ).json()
 
@@ -102,6 +112,7 @@ for kommune in kommuner:
 
         tillaeg_data = requests.get(
             tillaeg_url,
+            headers=headers,
             timeout=30
         ).json()
 
