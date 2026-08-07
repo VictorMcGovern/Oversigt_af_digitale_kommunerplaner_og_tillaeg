@@ -12,9 +12,19 @@ from datetime import datetime
 # Hent kommuneliste
 # --------------------------------------------------
 
-kommuner = requests.get(
-    "https://kommuneplaner.plandata.dk/assets/kommuner.json"
-).json()
+response = requests.get(
+    "https://kommuneplaner.plandata.dk/assets/kommuner.json",
+    timeout=60
+)
+
+response.raise_for_status()
+
+try:
+    kommuner = response.json()
+except Exception:
+    print("Kunne ikke læse kommunelisten.")
+    print(response.text[:500])
+    raise
 
 kommuneplan_resultater = []
 tillaeg_resultater = []
