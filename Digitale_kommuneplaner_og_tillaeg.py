@@ -12,33 +12,11 @@ from datetime import datetime
 # Hent kommuneliste
 # --------------------------------------------------
 
-headers = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/138.0 Safari/537.36"
-    )
-}
 
 response = requests.get(
     "https://kommuneplaner.plandata.dk/assets/kommuner.json",
-    headers=headers,
     timeout=60
 )
-
-print("STATUS:", response.status_code)
-
-print("HEADERS:")
-print(response.headers)
-
-print("FIRST 1000 CHARS:")
-print(response.text[:1000])
-
-response.raise_for_status()
-
-kommuner = response.json()
-
-response.raise_for_status()
 
 try:
     kommuner = response.json()
@@ -78,7 +56,6 @@ for kommune in kommuner:
 
         kp_data = requests.get(
             kp_url,
-            headers=headers,
             timeout=30
         ).json()
 
@@ -124,7 +101,6 @@ for kommune in kommuner:
 
         tillaeg_data = requests.get(
             tillaeg_url,
-            headers=headers,
             timeout=30
         ).json()
 
