@@ -26,6 +26,18 @@ response = requests.get(
     timeout=60
 )
 
+print("STATUS:", response.status_code)
+
+print("HEADERS:")
+print(response.headers)
+
+print("FIRST 1000 CHARS:")
+print(response.text[:1000])
+
+response.raise_for_status()
+
+kommuner = response.json()
+
 response.raise_for_status()
 
 try:
