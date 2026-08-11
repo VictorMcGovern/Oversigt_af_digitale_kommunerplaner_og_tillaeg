@@ -400,11 +400,6 @@ a {{
         digitale kommuneplantillæg i Danmark.
         </p>
 
-        <p>
-        Data hentes automatisk fra Plandata.dk og opdateres,
-        hver gang scriptet køres.
-        </p>
-
     </div>
 
     <div class="stat-grid">
